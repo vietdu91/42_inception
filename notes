@@ -1,0 +1,79 @@
+##############################################################
+#															 #
+#		INCEPTION											 #
+#															 #
+##############################################################
+
+#===============================#
+#       LEXIQUE                 #
+#===============================#
+
+    * DOCKER : Docker est un outil qui peut empaqueter une application et
+    ses dépendances dans un conteneur isolé (Une VM en mieux quoi)
+
+    * CONTENEUR : Machine virtuelle sans noyau : il ne contient que l’application
+    et les dépendances de l’application
+
+    * NOYAU : ensemble du système permettant à la machine virtuelle de
+    fonctionner, l’OS, le coté graphique, réseau, etc…
+
+    * DOCKER HUN : Librairie contenqnt des images (conteneur)
+
+    * DOCKER-COMPOSE : permet de gérer des applications qui utilisent plusieurs
+    containers et de communiquer entre eux. Avec Compose, nous pouvons créer un
+    fichier YAML pour définir les services et, à l'aide d'une seule commande, tout
+    mettre en route ou tout démonter.
+
+#===============================#
+#       DOCKERFILE              #
+#===============================#
+
+    * FROM qui vous permet de définir l’image source ;
+
+    * RUN qui vous permet d’exécuter des commandes dans votre conteneur ;
+    En général, les premiers RUN fournit dans le Dockerfile consistent à mettre à
+    jour les ressources de votre VM, comme apk, ou encore d’ajouter les utilitaires
+    basiques comme vim, curl ou sudo.
+
+    * ADD qui vous permet d’ajouter des fichiers dans votre conteneur ;
+
+    * WORKDIR qui vous permet de définir votre répertoire de travail ;
+
+    * COPY qui permet d’indiquer ou se trouve votre fichier à copier à partir du
+    répertoire ou se trouve votre Dockerfile, puis la ou vous souhaitez le copier
+    dans votre machine virtuelle.
+
+    Une image docker c’est un dossier, il contient obligatoirement votre Dockerfile
+    à la racine du dossier mais peut aussi contenir un tas d’autres fichiers pour
+    ensuite pouvoir les copier directement dans votre VM.
+
+# EXPOSE 443 pour NGINX (HTTPS) != 80 pour HTTP
+# EXPOSE 9000 entre NGINX et WORDPRESS
+# EXPOSE 3306 entre DB et WORDPRESS
+
+    * EXPOSE qui permet de définir les ports d’écoute par défaut ;
+
+    * VOLUME qui permet de définir les volumes utilisables ;
+
+    * CMD qui permet de définir la commande par défaut lors de l’exécution de vos conteneurs Docker.
+
+#===============================#
+#       DOCKERFILE              #
+#===============================#
+
+https://docs.docker.com/storage/volumes/
+
+docker compose up = cree un volume
+
+
+#===============================#
+#       NGINX                   #
+#===============================#
+
+#===============================#
+#       WORDPRESS               #
+#===============================#
+
+#===============================#
+#       MARIADB                 #
+#===============================#
