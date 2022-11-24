@@ -4,6 +4,14 @@
 #															 #
 ##############################################################
 
+##############################################################
+#
+#  TO DOOOOOOO :
+#
+#       - Commencer Dockerfile de Nginx
+#
+##############################################################
+
 #===============================#
 #       LEXIQUE                 #
 #===============================#
@@ -58,17 +66,42 @@
     * CMD qui permet de définir la commande par défaut lors de l’exécution de vos conteneurs Docker.
 
 #===============================#
-#       DOCKERFILE              #
+#       DOCKER COMPOSE          #
 #===============================#
 
 https://docs.docker.com/storage/volumes/
 
 docker compose up = cree un volume
 
+#===============================#
+#       CMDS DOCKER             #
+#===============================#
+
+# Build un container Docker
+
+    * docker build [path ou se trouve le Dockerfile]
+    * docker built -t [nom de notre build qu’on veut nommer] [path ou se trouve le Dockerfile]
+
+# Connaitre les images actuelles apres un build reussi
+
+    * docker image ls
+
+# Demarrer une image
+
+    * docker run [nom de l’image]
+    * docker run -it [nom de l’image] # permet d'acceder directement au terminal de notre container
+                                      # a son lancement
+
+# Connaitre les containers lances
+
+    * docker ps
+    * docker ps -a # connaitre les containers stoppes
 
 #===============================#
 #       NGINX                   #
 #===============================#
+
+Mise en place d’un serveur web
 
 #===============================#
 #       WORDPRESS               #
