@@ -74,6 +74,19 @@ https://docs.docker.com/storage/volumes/
 docker compose up = cree un volume
 
 #===============================#
+#       CMDS ALPINE             #
+#===============================#
+
+# Installer paquets
+
+    * apk
+    * apk update
+    * apk add
+    * apk del
+    * apk --help
+    * apk search [package]
+
+#===============================#
 #       CMDS DOCKER             #
 #===============================#
 
@@ -96,6 +109,10 @@ docker compose up = cree un volume
 
     * docker ps
     * docker ps -a # connaitre les containers stoppes
+
+# STOP
+    * docker container stop
+    * docker container prune
 
 #===============================#
 #       NGINX                   #
