@@ -114,6 +114,10 @@ docker compose up = cree un volume
     * docker container stop
     * docker container prune
 
+    * docker exec -it [ID] sh
+    * docker logs [ID]
+
+
 #===============================#
 #       NGINX                   #
 #===============================#

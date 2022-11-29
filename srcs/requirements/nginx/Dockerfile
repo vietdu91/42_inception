@@ -17,9 +17,12 @@ RUN openssl req -x509 -nodes \
 # Creation des fichiers de config
 RUN mkdir -p /var/run/nginx
 
-COPY conf/default.conf /etc/nginx/default.conf
+RUN	sed -i "/http /a include \/etc\/nginx\/conf.d\/*.conf;" /etc/nginx/nginx.conf
+
+COPY ./conf/nginx.conf /etc/nginx/conf.d/
 
 EXPOSE 443
+
 # Droits
 #	Root
 # RUN chmod 755 /var/www/html
@@ -27,4 +30,9 @@ EXPOSE 443
 # RUN chown -R www-data:www-data /var/www/html
 
 # Permet de mettre NGINX en premier plan pour qu'il ne se stop pas
-ENTRYPOINT	["nginx", "-g", "daemon off;"]
+#
+# https://stackoverflow.com/questions/21553353/what-is-the-difference-between-cmd-and-entrypoint-in-a-dockerfile?rq=1
+
+# ENTRYPOINT	["nginx", "-g", "daemon off;"]
+
+CMD	["nginx", "-g", "daemon off;"]
