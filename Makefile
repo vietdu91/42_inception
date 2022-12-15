@@ -40,7 +40,7 @@ GRIS		=	\033[0;100m
 BLANC		=	\033[0;107m
 
 all:
-	docker compose --env-file ./srcs/.env -f ./srcs/docker-compose.yml up --build -d
+#	docker compose --env-file ./srcs/.env -f ./srcs/docker-compose.yml up --build -d
 	@printf "\n$(GREEN)████████████████  ✨ ✨ ✨  C'EST MERVEILLEUSEMENT BIEN COMPILE  ✨ ✨ ✨  ████████████████$(RESET)"
 	@printf "\n\n"
 	@printf "$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)      $(RESET)\n"
@@ -117,15 +117,15 @@ all:
 	@printf "$(L_PINK) <3 <3 \n$(RESET)"
 
 up:
-	docker compose -f ./srcs/docker-compose.yml up --build
+#	docker compose -f ./srcs/docker-compose.yml up --build
 
 down:
-	docker compose -f ./srcs/docker-compose.yml down
+#	docker compose -f ./srcs/docker-compose.yml down
 
 clean:
-	docker compose -f ./srcs/docker-compose.yml down
-	sudo rm -rf ~/data/wordpress_vol/*
-	sudo rm -rf ~/data/mariadb_vol/*
-	docker system prune -a
+#	docker compose -f ./srcs/docker-compose.yml down
+#	sudo rm -rf ~/data/wordpress_vol/*
+#	sudo rm -rf ~/data/mariadb_vol/*
+#	docker system prune -a
 
 .PHONY: all up down clean

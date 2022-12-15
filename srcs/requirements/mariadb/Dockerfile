@@ -14,4 +14,6 @@ COPY conf/mariadb.conf /etc/my.cnf.d/mariadb.conf
 # Mettre notre script dans le Docker
 COPY ./script/script.sh /
 
+ENTRYPOINT ["sh", "script.sh"]
+
 CMD ["sh", "script.sh"]
