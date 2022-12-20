@@ -40,7 +40,8 @@ GRIS		=	\033[0;100m
 BLANC		=	\033[0;107m
 
 all:
-#	docker compose --env-file ./srcs/.env -f ./srcs/docker-compose.yml up --build -d
+	mkdir ~/data ~/data/mariadb_volume ~/data/wordpress_volume
+	docker-compose --env-file ./srcs/.env -f ./srcs/docker-compose.yml up --build -d
 	@printf "\n$(GREEN)████████████████  ✨ ✨ ✨  C'EST MERVEILLEUSEMENT BIEN COMPILE  ✨ ✨ ✨  ████████████████$(RESET)"
 	@printf "\n\n"
 	@printf "$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(JAUNE)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)  $(RESET)$(CYAN)      $(RESET)\n"
@@ -117,15 +118,25 @@ all:
 	@printf "$(L_PINK) <3 <3 \n$(RESET)"
 
 up:
-#	docker compose -f ./srcs/docker-compose.yml up --build
+	docker-compose -f ./srcs/docker-compose.yml up --build
 
 down:
-#	docker compose -f ./srcs/docker-compose.yml down
+	docker-compose -f ./srcs/docker-compose.yml down
+
+re:
+	docker-compose -f ./srcs/docker-compose.yml down
+	sudo rm -rf ~/data/wordpress_vol
+	sudo rm -rf ~/data/mariadb_vol
+	sudo rm -rf ~/data
+	docker system prune -a
+	mkdir ~/data ~/data/mariadb_volume ~/data/wordpress_volume
+	docker-compose --env-file ./srcs/.env -f ./srcs/docker-compose.yml up --build -d
 
 clean:
-#	docker compose -f ./srcs/docker-compose.yml down
-#	sudo rm -rf ~/data/wordpress_vol/*
-#	sudo rm -rf ~/data/mariadb_vol/*
-#	docker system prune -a
+	docker-compose -f ./srcs/docker-compose.yml down
+	sudo rm -rf ~/data/wordpress_vol
+	sudo rm -rf ~/data/mariadb_vol
+	sudo rm -rf ~/data
+	docker system prune -a
 
 .PHONY: all up down clean

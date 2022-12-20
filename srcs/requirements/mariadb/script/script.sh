@@ -10,16 +10,27 @@ else
 	chown -R mysql:mysql /run/mysqld
 fi
 
-if [ -d "/var/lib/mysql/mysql" ]; then
+if [ -d "$SQL_DATADIR/mysql" ]; then
 	echo "Les donnees MySQL existent deja !"
-	chown -R mysql:mysql /var/lib/mysql
+	chown -R mysql:mysql $SQL_DATADIR
 else
 	echo "MySQL est en train de pondre des petits oeufs de donnees..."
-	chown -R mysql:mysql /var/lib/mysql
+	chown -R mysql:mysql $SQL_DATADIR
+fi
 
-	mysql_install_db --user=mysql --ldata=/var/lib/mysql > /dev/null
+cat .setup_db 2> /dev/null
+if [ $? -ne 0 ]; then
+	usr/bin/mysqld_safe --datadir=/var/lib/mysql &
 
-	cat <<BABY > database_setup
+	sed -i "s|skip-networking|# skip-networking|g" /etc/my.cnf.d/mariadb-server.cnf
+	sed -i "s|.*bind-address\s*=.*|bind-address=0.0.0.0\nport=3306|g" /etc/my.cnf.d/mariadb-server.cnf
+
+	if ! mysqladmin --wait=30 ping; then
+		echo "Le petit oiseau MySQL n'est jamais revenu au nid..."
+		exit 1
+	fi
+
+	cat<<BABY > database_setup.sql
 FLUSH PRIVILEGES;
 GRANT ALL ON *.* TO 'root'@'%' identified by '$SQL_ROOT_PASSWORD' WITH GRANT OPTION;
 GRANT ALL ON *.* TO 'root'@'localhost' identified by '$SQL_ROOT_PASSWORD' WITH GRANT OPTION;
@@ -31,9 +42,10 @@ GRANT ALL ON $SQL_DATABASE.* TO '$SQL_USER'@'localhost' WITH GRANT OPTION;
 GRANT ALL ON $SQL_DATABASE.* TO '$SQL_USER'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 BABY
-	/usr/bin/mysqld --user=mysql --bootstrap < database_setup 
-	rm -f database_setup
-
+	mariadb < database_setup.sql
+	pkill mariadb
+	touch .setup_db
 fi
 
+usr/bin/mysqld_safe --datadir=/var/lib/mysql
 exec "$@"

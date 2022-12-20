@@ -6,14 +6,16 @@ RUN apk update && \
 	mariadb-common \
 	mariadb-client
 
-# ATTENTION : le fichier de conf est dans /etc "my.cnf"
+RUN mkdir -p /var/lib/mysqld /run/mysqld
 
-# Mettre notre fichier de conf dans le Docker
-COPY conf/mariadb.conf /etc/my.cnf.d/mariadb.conf
+RUN mariadb-install-db --datadir=/var/lib/mysql \
+		--auth-root-authentication-method=normal
 
+# COPY ./script/heredoc.sh /
 # Mettre notre script dans le Docker
 COPY ./script/script.sh /
 
-ENTRYPOINT ["sh", "script.sh"]
+# RUN sh heredoc.sh
 
-CMD ["sh", "script.sh"]
+
+ENTRYPOINT ["sh", "script.sh"]

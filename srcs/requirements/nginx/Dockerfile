@@ -13,7 +13,6 @@ RUN openssl req -x509 -nodes \
 	-keyout /etc/nginx/ssl/inception.key \
 	-subj "/C=FR/ST=Ile-de-France/L=Paris/O=42Paris/OU=Departement des BG/CN=emtran.42.fr/UID=emtran"
 
-
 # Creation des fichiers de config
 RUN mkdir -p /var/run/nginx
 
